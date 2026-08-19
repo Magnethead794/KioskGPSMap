@@ -76,9 +76,9 @@ async function loadGpsData() {
     // 3. Assign the text to your HTML element
     document.getElementById("mapIframe").src = "https://www.openstreetmap.org/export/embed.html?bbox=-100.0,32.0,-96.0,38.0&layer=mapnik&marker=" + latitude + "," + longitude;
     document.getElementById('GPS_String').innerText = gpsCoordinates;
-    document.getElementById('LatLong').innerText = "Lat: " + latitude + "&deg; ; Lon: " + longitude + "&deg;";
+    document.getElementById('LatLong').innerText = "Lat: " + latitude + "&#176; ; Lon: " + longitude + "&#176;";
     document.getElementById('Speed').innerText = "Speed: " + parseInt(array[7]) + " knots ; " + Math.round(parseFloat(array[7])*1.151) + " MPH ; " + Math.round(parseFloat(array[7])*1.852) + " KPH";
-    document.getElementById('Heading').innerText = "Heading: " + array[8] + "&deg;";
+    document.getElementById('Heading').innerText = "Heading: " + array[8] + "&#176;";
 
   } catch (error) {
     console.error('Error loading GPS data:', error);
