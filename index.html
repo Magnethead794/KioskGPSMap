@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KioskGPSMap — Map</title>
+  <style>
+    :root { --max-width:960px; --pad:24px; }
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:#f7f7f7;
+      color:#222;
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: var(--pad); }
+    /* centered header image */
+    .header-image {
+      display:block;
+      margin: 0 auto 18px auto;
+      max-width: 80%;
+      height: auto;
+      border-radius:8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .map-wrapper {
+      width: 100%;
+      height: 600px;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      background:#fff;
+    }
+    .map-iframe { border:0; width:100%; height:100%; display:block; }
+    .caption { text-align:center; color:#666; font-size:0.9rem; margin-top:12px; }
+    @media (max-width:600px) {
+      .map-wrapper { height: 420px; }
+      .header-image { max-width: 94%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Put your image at images/header.jpg OR replace src with an external URL -->
+    <img src="images/header.jpg" alt="Header image" class="header-image">
+
+    <!-- Example OpenStreetMap embed (centered on New York City). Change the marker and bbox to your location. -->
+    <div class="map-wrapper" aria-hidden="false">
+      <iframe
+        class="map-iframe"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-74.020,40.703,-73.993,40.721&layer=mapnik&marker=40.7128,-74.0060"
+        allowfullscreen
+        loading="lazy"
+        title="OpenStreetMap embed">
+      </iframe>
+    </div>
+
+    <p class="caption">
+      OpenStreetMap embed — edit the iframe src to change location/zoom/marker.
+    </p>
+  </div>
+</body>
+</html>
