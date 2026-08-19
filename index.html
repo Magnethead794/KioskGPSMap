@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>KioskGPSMap — Map</title>
   <style>
-    :root { --max-width:960px; --pad:24px; }
+    :root { --max-width:1600px; --pad:24px; }
     body {
       margin:0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -40,7 +40,6 @@
       background:#fff;
     }
     .map-iframe { border:0; width:100%; height:100%; display:block; }
-    .caption { text-align:center; color:#666; font-size:0.9rem; margin-top:12px; }
     @media (max-width:900px) {
       .content-wrapper {
         flex-direction: column;
@@ -66,9 +65,17 @@ async function loadGpsData() {
     
     // 2. Extract the text content from the file
     const gpsCoordinates = await response.text();
+    const array = gpsCoordinates.split(",");
+    var latitudeWhole = parseInt(parseFloat(array[3])/100);
+    var longitudeWhole = parseInt(parseFloat(array[5])/100);
+    var latitudeDecimal = (parseFloat(array[3]) - (latitudeWhole*100))/60;
+    var longitudeDecimal = (parseFloat(array[5]) - (longitudeWhole*100))/60;
+    var latitude = latitudeWhole + latitudeDecimal;
+    var longitude = longitudeWhole + longitudeDecimal;
     
     // 3. Assign the text to your HTML element
     document.getElementById('GPS_String').innerText = gpsCoordinates;
+    document.getElementById('Details').innerText = "Lat: " + latitude + " ; Lon: " + longitude + " ; Speed: " + array[7] + " knots ; Heading: " + array[8] + " degrees";
 
   } catch (error) {
     console.error('Error loading GPS data:', error);
@@ -98,6 +105,7 @@ window.addEventListener('DOMContentLoaded', loadGpsData);
       </div>
     </div>
     <p id="GPS_String"></p>
+    <p id="Details"></p>
   </div>
 </body>
 </html>
