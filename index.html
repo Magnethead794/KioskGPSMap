@@ -71,7 +71,7 @@ async function loadGpsData() {
     var latitudeDecimal = Math.round(((parseFloat(array[3]) - (latitudeWhole*100))/60)*100)/100;
     var longitudeDecimal = Math.round(((parseFloat(array[5]) - (longitudeWhole*100))/60)*100)/100;
     var latitude = latitudeWhole + latitudeDecimal;
-    var longitude = longitudeWhole + longitudeDecimal;
+    var longitude = -1*(longitudeWhole + longitudeDecimal);
     
     // 3. Assign the text to your HTML element
     document.getElementById('GPS_String').innerText = gpsCoordinates;
