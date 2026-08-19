@@ -72,6 +72,9 @@ async function loadGpsData() {
     var longitudeDecimal = Math.round(((parseFloat(array[5]) - (longitudeWhole*100))/60)*100)/100;
     var latitude = latitudeWhole + latitudeDecimal;
     var longitude = -1*(longitudeWhole + longitudeDecimal);
+
+    const now = new Date();
+    const formattedTime = now.toLocaleTimeString();
     
     // 3. Assign the text to your HTML element
     document.getElementById("mapIframe").src = "https://www.openstreetmap.org/export/embed.html?bbox=-100.0,32.0,-96.0,38.0&layer=mapnik&marker=" + latitude + "," + longitude;
@@ -79,6 +82,7 @@ async function loadGpsData() {
     document.getElementById('LatLong').innerText = "Lat: " + latitude + "\u00B0 ; Lon: " + longitude + "\u00B0";
     document.getElementById('Speed').innerText = "Speed: " + parseInt(array[7]) + " knots ; " + Math.round(parseFloat(array[7])*1.151) + " MPH ; " + Math.round(parseFloat(array[7])*1.852) + " KPH";
     document.getElementById('Heading').innerText = "Heading: " + array[8] + "\u00B0";
+    document.getElementById('load-clock-time').innerText = "This page last refreshed at: " + formattedTime;
 
   } catch (error) {
     console.error('Error loading GPS data:', error);
@@ -88,6 +92,7 @@ async function loadGpsData() {
 
 // Call the function when the page loads
 window.addEventListener('DOMContentLoaded', loadGpsData);
+setInterval(loadGpsData,600000);
   </script>
 </head>
 <body>
@@ -113,6 +118,7 @@ window.addEventListener('DOMContentLoaded', loadGpsData);
     <p id="LatLong"></p>
     <p id="Speed"></p>
     <p id="Heading"></p>
+    <p id="load-clock-time"></p>
   </div>
 </body>
 </html>
