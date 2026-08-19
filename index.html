@@ -53,6 +53,32 @@
       .map-wrapper { width: 100%; max-width: 100%; height: 600px; }
     }
   </style>
+  <script type="text/javascript">
+async function loadGpsData() {
+  try {
+    // 1. Fetch the file from the same directory
+    const response = await fetch('./gps.txt');
+    
+    // Check if the file exists on the server
+    if (!response.ok) {
+      throw new Error(`Server returned status: ${response.status}`);
+    }
+    
+    // 2. Extract the text content from the file
+    const gpsCoordinates = await response.text();
+    
+    // 3. Assign the text to your HTML element
+    document.getElementById('GPS_String').innerText = gpsCoordinates;
+
+  } catch (error) {
+    console.error('Error loading GPS data:', error);
+    document.getElementById('GPS_String').innerText = 'Failed to load GPS data.';
+  }
+}
+
+// Call the function when the page loads
+window.addEventListener('DOMContentLoaded', loadGpsData);
+  </script>
 </head>
 <body>
   <div class="container">
@@ -71,6 +97,7 @@
         </div>
       </div>
     </div>
+    <p id="GPS_String"></p>
   </div>
 </body>
 </html>
