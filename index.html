@@ -68,8 +68,8 @@ async function loadGpsData() {
     const array = gpsCoordinates.split(",");
     var latitudeWhole = parseInt(parseFloat(array[3])/100);
     var longitudeWhole = parseInt(parseFloat(array[5])/100);
-    var latitudeDecimal = (parseFloat(array[3]) - (latitudeWhole*100))/60;
-    var longitudeDecimal = (parseFloat(array[5]) - (longitudeWhole*100))/60;
+    var latitudeDecimal = Math.round(((parseFloat(array[3]) - (latitudeWhole*100))/60)*100)/100;
+    var longitudeDecimal = Math.round(((parseFloat(array[5]) - (longitudeWhole*100))/60)*100)/100;
     var latitude = latitudeWhole + latitudeDecimal;
     var longitude = longitudeWhole + longitudeDecimal;
     
