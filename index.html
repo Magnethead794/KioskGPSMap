@@ -78,6 +78,7 @@ async function loadGpsData() {
     
     // 3. Assign the text to your HTML element
     document.getElementById("mapIframe").src = "https://www.openstreetmap.org/export/embed.html?bbox=-100.0,32.0,-96.0,38.0&layer=mapnik&marker=" + latitude + "," + longitude;
+    document.getElementById("camera-image").src="images/image.jpg";
     document.getElementById('GPS_String').innerText = gpsCoordinates;
     document.getElementById('LatLong').innerText = "Lat: " + latitude + "\u00B0 ; Lon: " + longitude + "\u00B0";
     document.getElementById('Speed').innerText = "Speed: " + parseInt(array[7]) + " knots ; " + Math.round(parseFloat(array[7])*1.151) + " MPH ; " + Math.round(parseFloat(array[7])*1.852) + " KPH";
@@ -99,7 +100,7 @@ setInterval(loadGpsData,600000);
   <div class="container">
     <!-- Put your image at images/header.jpg OR replace src with an external URL -->
     <div class="content-wrapper">
-      <img src="images/image.jpg" alt="Camera image" class="camera-image" width="640" height="480">
+      <img src="" alt="Camera image" class="camera-image" id="camera-image" width="640" height="480">
       <div>
         <div class="map-wrapper" aria-hidden="false">
           <iframe
