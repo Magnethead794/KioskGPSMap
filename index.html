@@ -54,6 +54,10 @@
   </style>
   <script type="text/javascript">
 async function loadGpsData() {
+
+  document.getElementById("camera-image").src="";
+  // Forces the image to reload completely
+
   try {
     // 1. Fetch the file from the same directory
     const response = await fetch('./gps.txt');
