@@ -55,9 +55,14 @@
   <script type="text/javascript">
 async function loadGpsData() {
 
+  const now = new Date();
+  const formattedTime = now.toLocaleTimeString();
+  const imgTime = now.getTime();
+
   try {
     // 1. Fetch the file from the same directory
-    const response = await fetch('./gps.txt');
+
+    const response = await fetch('./gps.txt?t=' + imgTime);
     
     // Check if the file exists on the server
     if (!response.ok) {
@@ -73,10 +78,6 @@ async function loadGpsData() {
     var longitudeDecimal = Math.round(((parseFloat(array[5]) - (longitudeWhole*100))/60)*100)/100;
     var latitude = latitudeWhole + latitudeDecimal;
     var longitude = -1*(longitudeWhole + longitudeDecimal);
-
-    const now = new Date();
-    const formattedTime = now.toLocaleTimeString();
-    const imgTime = now.getTime();
     
     // 3. Assign the text to your HTML element
     document.getElementById("mapIframe").src = "https://www.openstreetmap.org/export/embed.html?bbox=-100.0,32.0,-96.0,38.0&layer=mapnik&marker=" + latitude + "," + longitude;
