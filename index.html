@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>KioskGPSMap — Map</title>
   <style>
-    :root { --max-width:1600px; }
+    :root { --max-width:1650px; }
     html, body {
 	overflow-x: auto;
-	min-width: 1600px;
+	min-width: 1650px;
     }
     body {
       margin:0;
@@ -47,13 +47,13 @@
       background:#fff;
     }
     .map-iframe { border:0; width:100%; height:100%; display:block; }
-    .textbox { padding-left: 50px; }
+    .textbox { padding-left: 75px; }
   </style>
   <script type="text/javascript">
 async function loadGpsData() {
 
   const now = new Date();
-  const formattedTime = now.toLocaleTimeString();
+  const formattedTime = now.toLocaleString();
   const imgTime = now.getTime();
 
   try {
@@ -75,6 +75,15 @@ async function loadGpsData() {
     var longitudeDecimal = Math.round(((parseFloat(array[5]) - (longitudeWhole*100))/60)*100)/100;
     var latitude = latitudeWhole + latitudeDecimal;
     var longitude = -1*(longitudeWhole + longitudeDecimal);
+
+    var day = parseInt(array[9].substring(0,2),10);
+    var month = parseInt(array[9].substring(2,4),10);
+    var year = 2000 + parseInt(array[9].substring(4,6),10);
+    var hour = parseInt(array[1].substring(0,2),10);
+    var minute = parseInt(array[1].substring(2,4),10);
+    var second = parseInt(array[1].substring(4,6),10);
+
+    const GPStimestamp = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
     
     // 3. Assign the text to your HTML element
     document.getElementById("mapIframe").src = "https://www.openstreetmap.org/export/embed.html?bbox=-100.0,32.0,-96.0,38.0&layer=mapnik&marker=" + latitude + "," + longitude;
@@ -84,6 +93,8 @@ async function loadGpsData() {
     document.getElementById('Speed').innerText = "Speed: " + parseInt(array[7]) + " knots ; " + Math.round(parseInt(array[7])*1.151) + " MPH ; " + Math.round(parseInt(array[7])*1.852) + " KPH";
     document.getElementById('Heading').innerText = "Heading: " + array[8] + "\u00B0";
     document.getElementById('load-clock-time').innerText = "This page last refreshed at: " + formattedTime;
+    document.getElementById('gps-time').innerText = "The GPS Timestamp is: " + GPStimestamp.toLocaleSring();
+
 
   } catch (error) {
     console.error('Error loading GPS data:', error);
@@ -119,6 +130,7 @@ setInterval(loadGpsData,300000);
     <p class="textbox" id="LatLong"></p>
     <p class="textbox" id="Speed"></p>
     <p class="textbox" id="Heading"></p>
+    <p class="textbox" id="gps-time"></p>
     <p class="textbox" id="load-clock-time"></p>
   </div>
 </body>
