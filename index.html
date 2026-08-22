@@ -17,7 +17,7 @@
       color:#222;
     }
     .container { 
-	max-width: 1600px; 
+	max-width: 1650px; 
 	margin: 0 auto; 
     }
     .content-wrapper {
@@ -83,7 +83,7 @@ async function loadGpsData() {
     var minute = parseInt(array[1].substring(2,4),10);
     var second = parseInt(array[1].substring(4,6),10);
 
-    const GPStimestamp = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+    const GPStimestamp = new Date(Date.UTC(year, month, day, hour, minute, second));
     
     // 3. Assign the text to your HTML element
     document.getElementById("mapIframe").src = "https://www.openstreetmap.org/export/embed.html?bbox=-100.0,32.0,-96.0,38.0&layer=mapnik&marker=" + latitude + "," + longitude;
@@ -98,7 +98,7 @@ async function loadGpsData() {
 
   } catch (error) {
     console.error('Error loading GPS data:', error);
-    document.getElementById('GPS_String').innerText = 'Failed to load GPS data.';
+    document.getElementById('GPS_String').innerText = "Failed to load GPS data: " + error;
   }
 }
 
