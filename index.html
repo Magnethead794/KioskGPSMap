@@ -93,7 +93,7 @@ async function loadGpsData() {
     document.getElementById('Speed').innerText = "Speed: " + parseInt(array[7]) + " knots ; " + Math.round(parseInt(array[7])*1.151) + " MPH ; " + Math.round(parseInt(array[7])*1.852) + " KPH";
     document.getElementById('Heading').innerText = "Heading: " + array[8] + "\u00B0";
     document.getElementById('load-clock-time').innerText = "This page last refreshed at: " + formattedTime;
-    document.getElementById('gps-time').innerText = "The GPS Timestamp is: " + GPStimestamp.toLocaleSring();
+    document.getElementById('gps-time').innerText = "The GPS Timestamp is: " + GPStimestamp.toLocaleString();
 
 
   } catch (error) {
