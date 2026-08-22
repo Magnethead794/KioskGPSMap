@@ -77,7 +77,7 @@ async function loadGpsData() {
     var longitude = -1*(longitudeWhole + longitudeDecimal);
 
     var day = parseInt(array[9].substring(0,2),10);
-    var month = parseInt(array[9].substring(2,4),10);
+    var month = parseInt(array[9].substring(2,4),10) - 1;
     var year = 2000 + parseInt(array[9].substring(4,6),10);
     var hour = parseInt(array[1].substring(0,2),10);
     var minute = parseInt(array[1].substring(2,4),10);
