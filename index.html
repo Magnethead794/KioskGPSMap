@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>KioskGPSMap — Map</title>
   <style>
-    :root { --max-width:1600px; --pad:24px; }
+    :root { --max-width:1650px; --pad:24px; }
     html, body {
 	overflow-x: auto;
-	min-width: 1600px;
+	min-width: 1650px;
     }
     body {
       margin:0;
@@ -17,7 +17,7 @@
       color:#222;
     }
     .container { 
-	max-width: 1600px; 
+	max-width: 1650px; 
 	margin: 0 auto; 
     }
     .content-wrapper {
@@ -47,17 +47,6 @@
       background:#fff;
     }
     .map-iframe { border:0; width:100%; height:100%; display:block; }
-    @media (max-width:900px) {
-      .content-wrapper {
-        flex-direction: column;
-      }
-      .camera-image {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-      }
-      .map-wrapper { width: 800px; max-width: 80px height: 600px; }
-    }
   </style>
   <script type="text/javascript">
 async function loadGpsData() {
