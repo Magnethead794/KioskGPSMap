@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>KioskGPSMap — Map</title>
   <style>
-    :root { --max-width:1650px; --pad:24px; }
+    :root { --max-width:1600px; }
     html, body {
 	overflow-x: auto;
-	min-width: 1650px;
+	min-width: 1600px;
     }
     body {
       margin:0;
@@ -17,7 +17,7 @@
       color:#222;
     }
     .container { 
-	max-width: 1650px; 
+	max-width: 1600px; 
 	margin: 0 auto; 
     }
     .content-wrapper {
@@ -47,6 +47,7 @@
       background:#fff;
     }
     .map-iframe { border:0; width:100%; height:100%; display:block; }
+    .textbox { padding-left: 50px; }
   </style>
   <script type="text/javascript">
 async function loadGpsData() {
@@ -114,11 +115,11 @@ setInterval(loadGpsData,300000);
         </div>
       </div>
     </div>
-    <p id="GPS_String"></p>
-    <p id="LatLong"></p>
-    <p id="Speed"></p>
-    <p id="Heading"></p>
-    <p id="load-clock-time"></p>
+    <p class="textbox" id="GPS_String"></p>
+    <p class="textbox" id="LatLong"></p>
+    <p class="textbox" id="Speed"></p>
+    <p class="textbox" id="Heading"></p>
+    <p class="textbox" id="load-clock-time"></p>
   </div>
 </body>
 </html>
